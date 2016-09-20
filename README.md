@@ -1,6 +1,6 @@
 # rocket
 
-TODO: Write a description here
+A simple and fast web framework
 
 ## Installation
 
@@ -10,7 +10,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   rocket:
-    github: [your-github-name]/rocket
+    github: aurelien-ldp/rocket
 ```
 
 
@@ -30,7 +30,7 @@ TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/rocket/fork )
+1. Fork it ( https://github.com/aurelien-ldp/rocket/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -38,4 +38,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) Aurelien Louis Dit Picard - creator, maintainer
+- [aurelien-ldp](https://github.com/aurelien-ldp) Aurelien Louis Dit Picard - creator, maintainer
