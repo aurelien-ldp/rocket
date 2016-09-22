@@ -1,5 +1,7 @@
 require "./rocket/*"
 
 module Rocket
-  # TODO Put your code here
+  ROUTER = Router.new
+  HOST = "0.0.0.0"
+  PORT = 3000
 end
