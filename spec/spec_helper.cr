@@ -7,7 +7,7 @@ class PostsController < Rocket::Controller
   end
 end
 
-def generate_context()
+def generate_context
   request = HTTP::Request.new("GET", "/")
   io = MemoryIO.new
   response = HTTP::Server::Response.new(io)
