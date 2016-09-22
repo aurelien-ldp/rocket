@@ -14,6 +14,12 @@ describe Rocket::Router do
       router.controllers.size.should eq 1
       router.controllers["PostsController"].itself.should_not be_nil
     end
+
+    it "should raise ActionNotFound" do
+      expect_raises(Rocket::Exceptions::ActionNotFound) do
+        router.add_route("GET", "/", PostsController, "")
+      end
+    end
   end
 
   describe "#call" do

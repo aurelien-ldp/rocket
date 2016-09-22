@@ -2,7 +2,7 @@
 
 A simple web framework with several purposes:
 - Gather developers from different programming worlds
-- Learn web framework technology and, hopefully, permit others to learn
+- Learn and, hopefully, permit others to learn
 
 Rocket is inspired by [Rails](https://github.com/rails/rails). But doesn't aim to
 be an exact copy of it. The goal is to gather as many programming experiences as

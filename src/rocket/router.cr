@@ -23,6 +23,9 @@ module Rocket
   # instance of it.
   #
   class Router < HTTP::Handler
+    getter routes
+    getter controllers
+
     def initialize
       @routes = [] of Route
       @controllers = {} of String => Controller
@@ -34,6 +37,7 @@ module Rocket
       if !controller_exists?(controller)
         @controllers[controller.name] = controller.new
       end
+      raise Exceptions::ActionNotFound.new(controller.name, action) unless @controllers[controller.name].action_exists?(action)
       @routes << Route.new method, path, @controllers[controller.name], action
     end
 
@@ -51,7 +55,7 @@ module Rocket
           found = true
         end
       end
-      raise Rocket::Exceptions::RouteNotFound.new(context) unless found
+      raise Exceptions::RouteNotFound.new(context) unless found
     end
 
     private def action_match?(route, context)
