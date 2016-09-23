@@ -49,23 +49,16 @@ class HelloController < Rocket::Controller
   end
 end
 
-# Instantiate the router
-router = Rocket::Router.new
-
 # Add routes to the router
-router.add_route("GET", "/", HelloController, "get")
-router.add_route("POST", "/user", HelloController, "post")
-router.add_route("PUT", "/", HelloController, "put")
-router.add_route("PATCH", "/", HelloController, "patch")
-router.add_route("DELETE", "/", HelloController, "delete")
+Rocket::ROUTER.add_route("GET", "/", HelloController, "get")
+Rocket::ROUTER.add_route("POST", "/user", HelloController, "post")
+Rocket::ROUTER.add_route("PUT", "/", HelloController, "put")
+Rocket::ROUTER.add_route("PATCH", "/", HelloController, "patch")
+Rocket::ROUTER.add_route("DELETE", "/", HelloController, "delete")
 
-# Launch the server with the router middleware
-HTTP::Server.new("127.0.0.1", 8080, [
-  HTTP::ErrorHandler.new,
-  HTTP::LogHandler.new,
-  HTTP::DeflateHandler.new,
-  router
-]).listen
+# Start the server (default port is 3000)
+# You can also add the port with Rocket::Server.start(3000)
+Rocket::Server.start
 ```
 
 
