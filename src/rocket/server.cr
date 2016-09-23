@@ -1,15 +1,20 @@
 require "http/server"
 
 module Rocket
+  # The Server listen on `Rocket::HOST` and `Rocket::PORT`.
+  # Another port can optionally be passed to the start function.
+  #
   class Server
-    def self.start(port)
+    MIDDLEWARE = [
+      HTTP::ErrorHandler.new,
+      HTTP::LogHandler.new,
+      HTTP::DeflateHandler.new,
+      ROUTER,
+    ]
+
+    def self.start(port = nil)
       puts "Starting server on http://#{HOST}:#{port || PORT}"
-      HTTP::Server.new(HOST, port || PORT, [
-        HTTP::ErrorHandler.new,
-        HTTP::LogHandler.new,
-        HTTP::DeflateHandler.new,
-        ROUTER
-      ]).listen
+      HTTP::Server.new(HOST, port || PORT, MIDDLEWARE).listen
     end
   end
 end
