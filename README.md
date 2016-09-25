@@ -4,14 +4,20 @@ A simple web framework with several purposes:
 - Gather developers from different programming worlds
 - Learn and, hopefully, permit others to learn
 
+Rocket is built upon the [Crystal](https://github.com/crystal-lang/crystal) programming language.
+
 Rocket is inspired by [Rails](https://github.com/rails/rails). But doesn't aim to
 be an exact copy of it. The goal is to gather as many programming experiences as
 possible to develop a great mix of awesome features.
 
+⚠️ The project is at a very early stage.
+
 ## Installation
 
+If you're new to Crystal you may first want to
+[install the language](https://crystal-lang.org/docs/installation/index.html).
 
-Add this to your application's `shard.yml`:
+Then you can add this to your application's `shard.yml`:
 
 ```yaml
 dependencies:
@@ -61,12 +67,13 @@ Rocket::ROUTER.add_route("DELETE", "/", HelloController, "delete")
 Rocket::Server.start
 ```
 
-
+Now you can go to http://localhost:3000 !
 
 
 ## Development
 
-Please refer to the Github's Project panel.
+`Rocket` is under active development. All contributions are very welcome !
+Please refer to the Github's Project panel to see the list of features to develop.
 
 ## Contributing
 

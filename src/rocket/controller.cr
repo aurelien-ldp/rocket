@@ -6,7 +6,7 @@ module Rocket
     property actions, context
 
     # The macro stores actions as a `Proc` in a Hash
-    # so that `actions['action_name'].call` executes the action
+    # so that `actions['action_name'].call` executes the action.
     def initialize
       @actions = {} of String => -> String
       @context = uninitialized HTTP::Server::Context
@@ -16,6 +16,8 @@ module Rocket
       {% end %}
     end
 
+    # Returns true if the actions has been defined in the controller,
+    # false otherwise.
     def action_exists?(action_name)
       @actions.each { |a| a[0] == action_name ? return true : next }
       false
