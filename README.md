@@ -1,5 +1,7 @@
 # Rocket 🚀
 
+[![Build Status](https://travis-ci.org/aurelien-ldp/rocket.svg?branch=master)](https://travis-ci.org/aurelien-ldp/rocket)
+
 A simple web framework with several purposes:
 - Gather developers from different programming worlds
 - Learn and, hopefully, permit others to learn
