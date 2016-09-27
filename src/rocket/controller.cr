@@ -1,15 +1,18 @@
 module Rocket
   # A controller defines actions. When called these actions execute
   # the logic and return text to render through the response.
+  # A controller has a Hash of params which give access to all the params
+  # defined in the route and the query params.
   #
   abstract class Controller
-    property actions, context
+    property actions, context, params
 
     # The macro stores actions as a `Proc` in a Hash
     # so that `actions['action_name'].call` executes the action.
     def initialize
       @actions = {} of String => -> String
       @context = uninitialized HTTP::Server::Context
+      @params = {} of String => String | Nil
 
       {% for action in @type.methods %}
         @actions[{{action.name.stringify}}] = ->self.{{action.name}}

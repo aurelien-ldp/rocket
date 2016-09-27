@@ -8,11 +8,11 @@ A simple web framework with several purposes:
 
 Rocket is built upon the [Crystal](https://github.com/crystal-lang/crystal) programming language.
 
-Rocket is inspired by [Rails](https://github.com/rails/rails). But doesn't aim to
+Rocket is inspired by [Rails](https://github.com/rails/rails), but doesn't aim to
 be an exact copy of it. The goal is to gather as many programming experiences as
 possible to develop a great mix of awesome features.
 
-⚠️ The project is at a very early stage.
+⚠️ **The project is at a very early stage.**
 
 ## Installation
 
@@ -41,7 +41,7 @@ class HelloController < Rocket::Controller
   end
 
   def post
-    "POST !"
+    "POST: #{context.request.body}"
   end
 
   def put
@@ -55,21 +55,28 @@ class HelloController < Rocket::Controller
   def delete
     "DELETE !"
   end
+
+  def param
+    "#{params}"
+  end
 end
 
 # Add routes to the router
 Rocket::ROUTER.add_route("GET", "/", HelloController, "get")
-Rocket::ROUTER.add_route("POST", "/user", HelloController, "post")
+Rocket::ROUTER.add_route("POST", "/posts", HelloController, "post")
 Rocket::ROUTER.add_route("PUT", "/", HelloController, "put")
 Rocket::ROUTER.add_route("PATCH", "/", HelloController, "patch")
 Rocket::ROUTER.add_route("DELETE", "/", HelloController, "delete")
+
+# With parameters
+Rocket::ROUTER.add_route("GET", "/hello/:name/:id/:nb", HelloController, "param")
 
 # Start the server (default port is 3000)
 # You can also add the port with Rocket::Server.start(3000)
 Rocket::Server.start
 ```
 
-Now you can go to http://localhost:3000 !
+Now you can go to [http://localhost:3000](http://localhost:3000) or [http://localhost:3000/hello/world/how/are?you&doing=good](http://localhost:3000/hello/world/how/are?you&doing=good) !
 
 
 ## Development

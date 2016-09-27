@@ -15,7 +15,7 @@ describe Rocket::Router do
       router.controllers["PostsController"].itself.should_not be_nil
     end
 
-    it "should raise ActionNotFound" do
+    it "raises ActionNotFound" do
       expect_raises(Rocket::Exceptions::ActionNotFound) do
         router.add_route("GET", "/", PostsController, "")
       end
@@ -23,10 +23,16 @@ describe Rocket::Router do
   end
 
   describe "#call" do
-    it "should raise RouteNotFound" do
+    it "raises RouteNotFound" do
       expect_raises(Rocket::Exceptions::RouteNotFound) do
         router.call(generate_context)
       end
+    end
+
+    it "routes correctly" do
+      context = generate_context
+      router.add_route("GET", "/", PostsController, "index")
+      router.call(context)
     end
   end
 end

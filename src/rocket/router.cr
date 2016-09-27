@@ -48,6 +48,8 @@ module Rocket
     # `Exceptions::RouteNotFound`.
     def call(context : HTTP::Server::Context)
       found = false
+      context.request.path = context.request.path.squeeze('/')
+      context.request.path.chop if context.request.path[-1] == '/' && context.request.path != "/"
       @routes.each do |route|
         if action_match?(route, context)
           text = route.call_action(context)
@@ -59,7 +61,7 @@ module Rocket
     end
 
     private def action_match?(route, context)
-      route.method == context.request.method && route.path == context.request.path
+      route.method == context.request.method && route.regex === context.request.path
     end
 
     private def controller_exists?(controller : Controller.class)
