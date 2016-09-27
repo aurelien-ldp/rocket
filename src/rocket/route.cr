@@ -1,5 +1,4 @@
 module Rocket
-  # Route class is here to store informations about a route.
   # A Route is defined by:
   # - an HTTP method
   # - an URL path

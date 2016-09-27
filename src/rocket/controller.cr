@@ -19,8 +19,8 @@ module Rocket
       {% end %}
     end
 
-    # Returns true if the actions has been defined in the controller,
-    # false otherwise.
+    # Returns true if the action with *action_name* has been defined in
+    # the controller, false otherwise.
     def action_exists?(action_name)
       @actions.each { |a| a[0] == action_name ? return true : next }
       false
