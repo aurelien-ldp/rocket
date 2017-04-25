@@ -8,7 +8,6 @@ module Rocket
     MIDDLEWARE = [
       HTTP::ErrorHandler.new,
       HTTP::LogHandler.new,
-      HTTP::DeflateHandler.new,
       ROUTER,
     ]
 

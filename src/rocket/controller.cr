@@ -5,14 +5,17 @@ module Rocket
   # defined in the route and the query params.
   #
   abstract class Controller
-    property actions, context, params
+    property :actions, :params, :context
 
     # The macro stores actions as a `Proc` in a Hash
     # so that `actions['action_name'].call` executes the action.
     def initialize
       @actions = {} of String => -> String
-      @context = uninitialized HTTP::Server::Context
       @params = {} of String => String | Nil
+
+      empty_request = HTTP::Request.new("", "")
+      empty_response = HTTP::Server::Response.new(IO::Memory.new)
+      @context = HTTP::Server::Context.new(empty_request, empty_response)
 
       {% for action in @type.methods %}
         @actions[{{action.name.stringify}}] = ->self.{{action.name}}

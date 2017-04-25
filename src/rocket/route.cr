@@ -44,7 +44,7 @@ module Rocket
 
     private def generate_regex(path)
       return /^\/$/ if path == "/"
-      path = path.chop if path[-1] == '/'
+      path = path.rchop if path[-1] == '/'
       path = path.insert(0, "^").insert(-1, "$")
       path = path.gsub("/", "\\/")
       Regex.new(path.gsub(/\\\/:.[^\\\/\$]*/, "(\/+).[^\/]+"))

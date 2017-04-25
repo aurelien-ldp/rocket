@@ -22,7 +22,9 @@ module Rocket
   # and a Hash which stores the name of the controller's class and an
   # instance of it.
   #
-  class Router < HTTP::Handler
+  class Router
+    include HTTP::Handler
+
     getter routes
     getter controllers
 
@@ -49,7 +51,7 @@ module Rocket
     def call(context : HTTP::Server::Context)
       found = false
       context.request.path = context.request.path.squeeze('/')
-      context.request.path.chop if context.request.path[-1] == '/' && context.request.path != "/"
+      context.request.path.rchop if context.request.path[-1] == '/' && context.request.path != "/"
       @routes.each do |route|
         if action_match?(route, context)
           text = route.call_action(context)
