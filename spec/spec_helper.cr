@@ -9,7 +9,7 @@ end
 
 def generate_context
   request = HTTP::Request.new("GET", "/")
-  io = MemoryIO.new
+  io = IO::Memory.new
   response = HTTP::Server::Response.new(io)
   HTTP::Server::Context.new(request, response)
 end
