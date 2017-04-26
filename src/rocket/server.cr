@@ -6,7 +6,7 @@ module Rocket
   #
   class Server
     MIDDLEWARE = [
-      HTTP::ErrorHandler.new,
+      Rocket::ErrorHandler.new,
       HTTP::LogHandler.new,
       ROUTER,
     ]
